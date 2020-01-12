@@ -1,0 +1,5 @@
+cat TODO | sed '/^#/d'
+passer le message warning en variable + associer les esc.seq. correspondantes
+
+http://www.un.org/fr/member-states/
+

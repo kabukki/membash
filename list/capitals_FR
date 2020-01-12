@@ -1,0 +1,6 @@
+@include "geo/europe_FR"
+@include "geo/ameriqueNord_FR"
+@include "geo/ameriqueSud_FR"
+@include "geo/asie_FR"
+@include "geo/oceanie_FR"
+@include "geo/afrique_FR"

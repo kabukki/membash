@@ -1,0 +1,44 @@
+#!/bin/bash
+
+set -o pipefail
+
+# Reset location
+cd $(dirname $0)
+
+CONFIG_FILE=values/config.sh
+VERSION_FILE=misc/version
+VERSION=$(cat $VERSION_FILE);
+
+# Loading functions
+end() {
+    echo $1 ; exit 1
+}
+loadConfig() {
+    [[ -f "$CONFIG_FILE" ]] && . "$CONFIG_FILE" || end "Missing mandatory config file, aborting"
+}
+loadSrc() {
+    [[ -f "$LOADERS_FILE" ]] && . "$LOADERS_FILE" || end "Missing 'loaders' source file, aborting"
+    [[ -f "$HELPER_FILE" ]] && . "$HELPER_FILE" || end "Missing 'helper' source file, aborting"
+    [[ -f "$MAIN_FILE" ]] && . "$MAIN_FILE" || end "Missing 'main' source file, aborting"
+}
+
+### Body
+
+# Fetch package, source dir, and strings/vars files.
+loadConfig
+# Load common and main functions
+loadSrc
+# Load vars and string in package
+loadVars ; loadStrings
+checkVersion
+# Load quiz file
+loadFile $*
+
+# Main program
+greet
+main
+goodbye
+
+# Add this session to the log file
+decode "\u\t\f\t$(formattedDate)\t\s/\q\t\b" >> $SCORE_FILE
+decode "$EXIT" ; read -n 1 -s

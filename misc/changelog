@@ -1,0 +1,11 @@
+2009 initial
+2009 Added comment implementation (#)
+2009 Added color & formatting prompt support
+2309 Added preprocessing directives support: @include.
+2309 Updated capitals. Now includes every member states of the United Nations
+2409 Added Jokers 'joker'
+2409 Added multiple quizzes, and accents in joker hint. Also prevent joker wasting
+	if word fully revealed
+1110 Fixed a game-config bug where slashes would cause the script not to work
+1410 Removed timeout. Fixed Ctrl-D handling
+
